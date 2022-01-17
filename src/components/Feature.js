@@ -3,8 +3,9 @@ import ArticleList from "./ArticleList";
 import AddArticle from "./AddArticle";
 
 // the id constant is a generator. It is created by defining an inline generator function and calling it right away. This generator will yield numbers infinitely.So calling id.next() the first time returns 1, next is 2 and so on. This simple utility will come in handy when it's time to add new articles and we need a new unique ID.
-const id = (function* () {
+const gen = (function* () {
   let i = 1;
+
   while (true) {
     yield i;
     i += 1;
@@ -16,25 +17,25 @@ export default class Feature extends Component {
   state = {
     articles: [
       {
-        id: id.next(),
+        id: gen.next(),
         title: "Article 1",
         summary: "Article 1 Summary",
         display: "none",
       },
       {
-        id: id.next(),
+        id: gen.next(),
         title: "Article 2",
         summary: "Article 2 Summary",
         display: "none",
       },
       {
-        id: id.next(),
+        id: gen.next(),
         title: "Article 3",
         summary: "Article 3 Summary",
         display: "none",
       },
       {
-        id: id.next(),
+        id: gen.next(),
         title: "Article 4",
         summary: "Article 4 Summary",
         display: "none",
@@ -61,7 +62,7 @@ export default class Feature extends Component {
       articles: [
         ...state.articles,
         {
-          id: id.next(),
+          id: gen.next(),
           title: state.title,
           summary: state.summary,
           display: "none",
